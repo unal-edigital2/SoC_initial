@@ -4,8 +4,8 @@
 echo 'Load done'
 echo '================================'
 cd firmware
-make all
 make clean
+make all
 echo 'make done'
 echo '================================'
 cd .. 
