@@ -4,7 +4,7 @@
 2. Descargar el paquete WP04
 3. ingresar en un terminal a la carpeta ´SoC_project´
 4. ejecutar "python3 buildSoCproject.py"
-5. jtgcfg prog -d NexysA7 -i 0 -f ./build/nexys4ddr/gateware/nexys4ddr.bit
+5. djtgcfg prog -d NexysA7 -i 0 -f ./build/nexys4ddr/gateware/nexys4ddr.bit
 6. ir a la carpeta  firmware
 7. ejecutar "make all"
 8. salir de la carpeta firmware  
