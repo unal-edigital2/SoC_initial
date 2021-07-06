@@ -4,8 +4,8 @@ from migen import *
 from migen.genlib.io import CRG
 from migen.genlib.cdc import MultiReg
 
-#import nexys4ddr as tarjeta
-import c4e6e10 as tarjeta
+import nexys4ddr as tarjeta
+#import c4e6e10 as tarjeta
 
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
