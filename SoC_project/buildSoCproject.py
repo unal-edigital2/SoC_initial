@@ -29,44 +29,44 @@ class BaseSoC(SoCCore):
 			integrated_rom_size=0x6000,
 			integrated_main_ram_size=2*1024)
 
-#		# Clock Reset Generation
-#		self.submodules.crg = CRG(platform.request("clk"), ~platform.request("cpu_reset"))
-#
-#		# Leds
-#		SoCCore.add_csr(self,"leds")
-#		user_leds = Cat(*[platform.request("led", i) for i in range(10)])
-#		self.submodules.leds = gpio.GPIOOut(user_leds)
+		# Clock Reset Generation
+		self.submodules.crg = CRG(platform.request("clk"), ~platform.request("cpu_reset"))
+
+		# Leds
+		SoCCore.add_csr(self,"leds")
+		user_leds = Cat(*[platform.request("led", i) for i in range(10)])
+		self.submodules.leds = gpio.GPIOOut(user_leds)
 		
 		# Switchs
-#		SoCCore.add_csr(self,"switchs")
-#		user_switchs = Cat(*[platform.request("sw", i) for i in range(8)])
-#		self.submodules.switchs = gpio.GPIOIn(user_switchs)
+		SoCCore.add_csr(self,"switchs")
+		user_switchs = Cat(*[platform.request("sw", i) for i in range(8)])
+		self.submodules.switchs = gpio.GPIOIn(user_switchs)
 		
 		# Buttons
-#		SoCCore.add_csr(self,"buttons")
-#		user_buttons = Cat(*[platform.request("btn%c" %c) for c in ['c','r','l']])
-#		self.submodules.buttons = gpio.GPIOIn(user_buttons)
+		SoCCore.add_csr(self,"buttons")
+		user_buttons = Cat(*[platform.request("btn%c" %c) for c in ['c','r','l']])
+		self.submodules.buttons = gpio.GPIOIn(user_buttons)
 		
 		# 7segments Display
-#		SoCCore.add_csr(self,"display")
-#		display_segments = Cat(*[platform.request("display_segment", i) for i in range(8)])
-#		display_digits = Cat(*[platform.request("display_digit", i) for i in range(8)])
-#		self.submodules.display = sevensegment.SevenSegment(display_segments,display_digits)
+		SoCCore.add_csr(self,"display")
+		display_segments = Cat(*[platform.request("display_segment", i) for i in range(8)])
+		display_digits = Cat(*[platform.request("display_digit", i) for i in range(8)])
+		self.submodules.display = sevensegment.SevenSegment(display_segments,display_digits)
 
 		# RGB leds
-#		SoCCore.add_csr(self,"ledRGB_1")
-#		self.submodules.ledRGB_1 = rgbled.RGBLed(platform.request("ledRGB",1))
+		SoCCore.add_csr(self,"ledRGB_1")
+		self.submodules.ledRGB_1 = rgbled.RGBLed(platform.request("ledRGB",1))
 		
-#		SoCCore.add_csr(self,"ledRGB_2")
-#		self.submodules.ledRGB_2 = rgbled.RGBLed(platform.request("ledRGB",2))
+		SoCCore.add_csr(self,"ledRGB_2")
+		self.submodules.ledRGB_2 = rgbled.RGBLed(platform.request("ledRGB",2))
 		
 				
 		# VGA
-#		SoCCore.add_csr(self,"vga_cntrl")
-#		vga_red = Cat(*[platform.request("vga_red", i) for i in range(4)])
-#		vga_green = Cat(*[platform.request("vga_green", i) for i in range(4)])
-#		vga_blue = Cat(*[platform.request("vga_blue", i) for i in range(4)])
-#		self.submodules.vga_cntrl = vgacontroller.VGAcontroller(platform.request("hsync"),platform.request("vsync"), vga_red, vga_green, vga_blue)
+		SoCCore.add_csr(self,"vga_cntrl")
+		vga_red = Cat(*[platform.request("vga_red", i) for i in range(4)])
+		vga_green = Cat(*[platform.request("vga_green", i) for i in range(4)])
+		vga_blue = Cat(*[platform.request("vga_blue", i) for i in range(4)])
+		self.submodules.vga_cntrl = vgacontroller.VGAcontroller(platform.request("hsync"),platform.request("vsync"), vga_red, vga_green, vga_blue)
 
 # Build --------------------------------------------------------------------------------------------
 if __name__ == "__main__":
