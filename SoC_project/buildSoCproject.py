@@ -4,8 +4,10 @@ from migen import *
 from migen.genlib.io import CRG
 from migen.genlib.cdc import MultiReg
 
-import nexys4ddr as tarjeta
-#import c4e6e10 as tarjeta
+## debe dejar solo ina tarjeta
+# import nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
+import digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
+# import c4e6e10 as tarjeta
 
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
@@ -34,12 +36,12 @@ class BaseSoC(SoCCore):
 
 		# Leds
 		SoCCore.add_csr(self,"leds")
-		user_leds = Cat(*[platform.request("led", i) for i in range(10)])
+		user_leds = Cat(*[platform.request("led", i) for i in range(4)])
 		self.submodules.leds = gpio.GPIOOut(user_leds)
 		
 		# Switchs
 		SoCCore.add_csr(self,"switchs")
-		user_switchs = Cat(*[platform.request("sw", i) for i in range(8)])
+		user_switchs = Cat(*[platform.request("sw", i) for i in range(4)])
 		self.submodules.switchs = gpio.GPIOIn(user_switchs)
 		
 		# Buttons
@@ -47,7 +49,7 @@ class BaseSoC(SoCCore):
 		user_buttons = Cat(*[platform.request("btn%c" %c) for c in ['c','r','l']])
 		self.submodules.buttons = gpio.GPIOIn(user_buttons)
 		
-		# 7segments Display
+		# 7segments Display para zybo z7 comentar 
 		SoCCore.add_csr(self,"display")
 		display_segments = Cat(*[platform.request("display_segment", i) for i in range(8)])
 		display_digits = Cat(*[platform.request("display_digit", i) for i in range(8)])
@@ -61,7 +63,7 @@ class BaseSoC(SoCCore):
 		self.submodules.ledRGB_2 = rgbled.RGBLed(platform.request("ledRGB",2))
 		
 				
-		# VGA
+		# VGA para zybo z7 comentar 
 		SoCCore.add_csr(self,"vga_cntrl")
 		vga_red = Cat(*[platform.request("vga_red", i) for i in range(4)])
 		vga_green = Cat(*[platform.request("vga_green", i) for i in range(4)])

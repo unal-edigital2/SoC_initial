@@ -8,8 +8,8 @@ main.o: /opt/litex/litex/litex/soc/software/bios/main.c \
  /opt/litex/litex/litex/soc/cores/cpu/picorv32/system.h \
  /opt/litex/litex/litex/soc/software/include/base/id.h \
  /opt/litex/litex/litex/soc/cores/cpu/picorv32/irq.h \
- /home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/csr.h \
- /home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/soc.h \
+ /home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/csr.h \
+ /home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/soc.h \
  /opt/litex/litex/litex/soc/software/include/base/stdint.h \
  /opt/litex/litex/litex/soc/software/include/hw/common.h \
  /opt/litex/litex/litex/soc/software/include/base/crc.h \
@@ -17,8 +17,8 @@ main.o: /opt/litex/litex/litex/soc/software/bios/main.c \
  /opt/litex/litex/litex/soc/software/bios/readline.h \
  /opt/litex/litex/litex/soc/software/bios/helpers.h \
  /opt/litex/litex/litex/soc/software/bios/command.h \
- /home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/mem.h \
- /home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/git.h \
+ /home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/mem.h \
+ /home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/git.h \
  /opt/litex/litex/litex/soc/software/include/base/spiflash.h \
  /opt/litex/litex/litex/soc/software/liblitedram/sdram.h \
  /opt/litex/litex/litex/soc/software/libliteeth/udp.h \
@@ -45,9 +45,9 @@ main.o: /opt/litex/litex/litex/soc/software/bios/main.c \
 
 /opt/litex/litex/litex/soc/cores/cpu/picorv32/irq.h:
 
-/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/csr.h:
+/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/csr.h:
 
-/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/soc.h:
+/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/soc.h:
 
 /opt/litex/litex/litex/soc/software/include/base/stdint.h:
 
@@ -63,9 +63,9 @@ main.o: /opt/litex/litex/litex/soc/software/bios/main.c \
 
 /opt/litex/litex/litex/soc/software/bios/command.h:
 
-/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/mem.h:
+/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/mem.h:
 
-/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/git.h:
+/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/git.h:
 
 /opt/litex/litex/litex/soc/software/include/base/spiflash.h:
 

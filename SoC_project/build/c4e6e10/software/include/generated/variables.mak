@@ -7,7 +7,7 @@ CPU_DIRECTORY=/opt/litex/litex/litex/soc/cores/cpu/picorv32
 COMPILER_RT_DIRECTORY=/opt/litex/pythondata-software-compiler_rt/pythondata_software_compiler_rt/data
 SOC_DIRECTORY=/opt/litex/litex/litex/soc
 export BUILDINC_DIRECTORY
-BUILDINC_DIRECTORY=/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include
+BUILDINC_DIRECTORY=/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include
 LIBCOMPILER_RT_DIRECTORY=/opt/litex/litex/litex/soc/software/libcompiler_rt
 LIBBASE_DIRECTORY=/opt/litex/litex/litex/soc/software/libbase
 LIBLITEDRAM_DIRECTORY=/opt/litex/litex/litex/soc/software/liblitedram

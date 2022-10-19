@@ -9,10 +9,10 @@ boot.o: /opt/litex/litex/litex/soc/software/bios/boot.c \
  /opt/litex/litex/litex/soc/software/include/base/crc.h \
  /opt/litex/litex/litex/soc/software/include/base/string.h \
  /opt/litex/litex/litex/soc/cores/cpu/picorv32/irq.h \
- /home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/csr.h \
- /home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/soc.h \
+ /home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/csr.h \
+ /home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/soc.h \
  /opt/litex/litex/litex/soc/software/include/hw/common.h \
- /home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/mem.h \
+ /home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/mem.h \
  /opt/litex/litex/litex/soc/software/bios/sfl.h \
  /opt/litex/litex/litex/soc/software/bios/boot.h \
  /opt/litex/litex/litex/soc/software/include/base/jsmn.h \
@@ -46,13 +46,13 @@ boot.o: /opt/litex/litex/litex/soc/software/bios/boot.c \
 
 /opt/litex/litex/litex/soc/cores/cpu/picorv32/irq.h:
 
-/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/csr.h:
+/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/csr.h:
 
-/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/soc.h:
+/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/soc.h:
 
 /opt/litex/litex/litex/soc/software/include/hw/common.h:
 
-/home/ferney/Escritorio/SoC_project/build/c4e6e10/software/include/generated/mem.h:
+/home/ferney/Documentos/wp04_SoC_initial/SoC_project/build/c4e6e10/software/include/generated/mem.h:
 
 /opt/litex/litex/litex/soc/software/bios/sfl.h:
 

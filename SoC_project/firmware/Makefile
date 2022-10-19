@@ -6,7 +6,7 @@ include $(SOC_DIRECTORY)/software/common.mak
 OBJECTS=isr.o delay.o display.o main.o
 
 all: firmware.bin
-
+	echo "fin"
 # pull in dependency info for *existing* .o files
 -include $(OBJECTS:.o=.d)
 
