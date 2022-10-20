@@ -5,9 +5,9 @@ from migen.genlib.io import CRG
 from migen.genlib.cdc import MultiReg
 
 ## debe dejar solo una tarjeta
-import nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
-#import digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
-# import c4e6e10 as tarjeta
+import tarjetas.nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
+#import tarjetas.digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
+# import tarjetas.c4e6e10 as tarjeta
 
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
