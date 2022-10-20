@@ -5,8 +5,8 @@ from migen.genlib.io import CRG
 from migen.genlib.cdc import MultiReg
 
 ## debe dejar solo una tarjeta
-#import tarjetas.nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
-import tarjetas.digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
+import tarjetas.nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
+#import tarjetas.digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
 # import tarjetas.c4e6e10 as tarjeta
 
 from litex.soc.integration.soc_core import *
@@ -59,7 +59,8 @@ class BaseSoC(SoCCore):
 		self.submodules.ledRGB_2 = rgbled.RGBLed(platform.request("ledRGB",2))
 		
 		# 7segments Display para zybo z7 comentar 
-  		self.submodules.display = SevenSegmentDisplay(sys_clk_freq)
+  
+		self.submodules.display = SevenSegmentDisplay(sys_clk_freq)
 		self.add_csr("display")
 		self.comb += [
            platform.request("display_cs_n").eq(~self.display.cs),
