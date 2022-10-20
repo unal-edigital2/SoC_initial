@@ -9,4 +9,4 @@ make all
 echo 'make done'
 echo '================================'
 cd .. 
-litex_term.py /dev/ttyUSB1 --kernel firmware/firmware.bin
+litex_term /dev/ttyUSB1 --kernel firmware/firmware.bin

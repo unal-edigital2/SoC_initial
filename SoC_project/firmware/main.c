@@ -8,7 +8,6 @@
 #include <generated/csr.h>
 
 #include "delay.h"
-#include "display.h"
 
 static char *readstr(void)
 {
@@ -88,29 +87,11 @@ static void reboot(void)
 static void display_test(void)
 {
 	int i;
-	signed char defill = 0;	//1->left, -1->right, 0->.
-	
-	char txtToDisplay[40] = {0, DISPLAY_0, DISPLAY_1,DISPLAY_2,DISPLAY_3,DISPLAY_4,DISPLAY_5,DISPLAY_6,DISPLAY_7,DISPLAY_8,DISPLAY_9,DISPLAY_A,DISPLAY_B,DISPLAY_C,DISPLAY_D,DISPLAY_E,DISPLAY_F,DISPLAY_G,DISPLAY_H,DISPLAY_I,DISPLAY_J,DISPLAY_K,DISPLAY_L,DISPLAY_M,DISPLAY_N,DISPLAY_O,DISPLAY_P,DISPLAY_Q,DISPLAY_R,DISPLAY_S,DISPLAY_T,DISPLAY_U,DISPLAY_V,DISPLAY_W,DISPLAY_X,DISPLAY_Y,DISPLAY_Z,DISPLAY_DP,DISPLAY_TR,DISPLAY_UR};
-	
-	printf("Test del los display de 7 segmentos... se interrumpe con el botton 1\n");
-
-	while(!(buttons_in_read()&1)) {
-		display(txtToDisplay);
-		if(buttons_in_read()&(1<<1)) defill = ((defill<=-1) ? -1 : defill-1);
-		if(buttons_in_read()&(1<<2)) defill = ((defill>=1) ? 1 : defill+1);
-		if (defill > 0) {
-			char tmp = txtToDisplay[0];
-			for(i=0; i<sizeof(txtToDisplay)/sizeof(txtToDisplay[i]); i++) {
-				txtToDisplay[i] = ((i==sizeof(txtToDisplay)/sizeof(txtToDisplay[i])-1) ? tmp : txtToDisplay[i+1]);
-			}
-		}
-		else if(defill < 0) {
-			char tmp = txtToDisplay[sizeof(txtToDisplay)/sizeof(txtToDisplay[0])-1];
-			for(i=sizeof(txtToDisplay)/sizeof(txtToDisplay[i])-1; i>=0; i--) {
-				txtToDisplay[i] = ((i==0) ? tmp : txtToDisplay[i-1]);
-			}
-		}
-		delay_ms(500);
+	printf("display_test...\n");
+	for(i=0; i<6; i++) {
+		display_sel_write(i);
+		display_value_write(i);
+		display_write_write(1);
 	}
 }
 
@@ -178,8 +159,6 @@ static void rgbled_test(void)
 		}	
 	}
 	
-
-
 }
 
 
@@ -229,11 +208,13 @@ static void console_service(void)
 
 int main(void)
 {
+	#ifdef CONFIG_CPU_HAS_INTERRUPT
 	irq_setmask(0);
 	irq_setie(1);
+	#endif
 	uart_init();
 
-	puts("\nSoC - RiscV project UNAL 2020-2-- CPU testing software built "__DATE__" "__TIME__"\n");
+	puts("\nSoC - RiscV project UNAL 2022-2-- CPU testing software built "__DATE__" "__TIME__"\n");
 	help();
 	prompt();
 

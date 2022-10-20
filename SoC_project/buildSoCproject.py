@@ -4,9 +4,9 @@ from migen import *
 from migen.genlib.io import CRG
 from migen.genlib.cdc import MultiReg
 
-## debe dejar solo ina tarjeta
-# import nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
-import digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
+## debe dejar solo una tarjeta
+import nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
+#import digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
 # import c4e6e10 as tarjeta
 
 from litex.soc.integration.soc_core import *
@@ -15,18 +15,19 @@ from litex.soc.interconnect.csr import *
 
 from litex.soc.cores import gpio
 from module import rgbled
-from module import sevensegment
 from module import vgacontroller
+from module.display import SevenSegmentDisplay
 
 # BaseSoC ------------------------------------------------------------------------------------------
 
 class BaseSoC(SoCCore):
 	def __init__(self):
+		sys_clk_freq = int(100e6)
 		platform = tarjeta.Platform()
 		# SoC with CPU
 		SoCCore.__init__(self, platform,
- 			cpu_type="picorv32",
-#			cpu_type="vexriscv",
+# 			cpu_type="picorv32",
+			cpu_type="vexriscv",
 			clk_freq=100e6,
 			integrated_rom_size=0x6000,
 			integrated_main_ram_size=16*1024)
@@ -49,11 +50,6 @@ class BaseSoC(SoCCore):
 		user_buttons = Cat(*[platform.request("btn%c" %c) for c in ['c','r','l']])
 		self.submodules.buttons = gpio.GPIOIn(user_buttons)
 		
-		# 7segments Display para zybo z7 comentar 
-		SoCCore.add_csr(self,"display")
-		display_segments = Cat(*[platform.request("display_segment", i) for i in range(8)])
-		display_digits = Cat(*[platform.request("display_digit", i) for i in range(8)])
-		self.submodules.display = sevensegment.SevenSegment(display_segments,display_digits)
 
 		# RGB leds
 		SoCCore.add_csr(self,"ledRGB_1")
@@ -62,7 +58,14 @@ class BaseSoC(SoCCore):
 		SoCCore.add_csr(self,"ledRGB_2")
 		self.submodules.ledRGB_2 = rgbled.RGBLed(platform.request("ledRGB",2))
 		
-				
+		# 7segments Display para zybo z7 comentar 
+  
+		self.submodules.display = SevenSegmentDisplay(sys_clk_freq)
+		self.add_csr("display")
+		self.comb += [
+           platform.request("display_cs_n").eq(~self.display.cs),
+           platform.request("display_abcdefg").eq(~self.display.abcdefg)
+    	]				
 		# VGA para zybo z7 comentar 
 		SoCCore.add_csr(self,"vga_cntrl")
 		vga_red = Cat(*[platform.request("vga_red", i) for i in range(4)])
@@ -72,6 +75,6 @@ class BaseSoC(SoCCore):
 
 # Build --------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-	builder = Builder(BaseSoC())
-	builder.build()
+	builder = Builder(BaseSoC(),output_dir="build", csr_csv="csr.csv")
+	builder.build(build_name="top")
 
