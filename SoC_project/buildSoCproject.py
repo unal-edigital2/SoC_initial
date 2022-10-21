@@ -65,7 +65,7 @@ class BaseSoC(SoCCore):
 		self.comb += [
            platform.request("display_cs_n").eq(~self.display.cs),
            platform.request("display_abcdefg").eq(~self.display.abcdefg)
-    	]				
+   	]				
 		# VGA para zybo z7 comentar 
 		SoCCore.add_csr(self,"vga_cntrl")
 		vga_red = Cat(*[platform.request("vga_red", i) for i in range(4)])

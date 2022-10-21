@@ -27,21 +27,22 @@ _io = [
     ("sw", 3, Pins("T16"), IOStandard("LVCMOS33")),
 
     # Buttons
-    ("btnc", 0, Pins("R18"), IOStandard("LVCMOS33")),
+    ("btnc", 0, Pins("K18"), IOStandard("LVCMOS33")),
     ("btnd", 1, Pins("P16"), IOStandard("LVCMOS33")),
-    ("btnu", 2, Pins("V16"), IOStandard("LVCMOS33")),
+    ("btnu", 2, Pins("K19"), IOStandard("LVCMOS33")),
   
-    ("ledRGB", 1,
+
+   ("ledRGB", 1,
+        Subsignal("r", Pins("V16")),
+        Subsignal("g", Pins("F17")),
+        Subsignal("b", Pins("M17")),
+        IOStandard("LVCMOS33")),
+    ("ledRGB", 2,
         Subsignal("r", Pins("Y11")),
         Subsignal("g", Pins("T5")),
         Subsignal("b", Pins("Y12")),
         IOStandard("LVCMOS33")),
 
-   ("ledRGB", 2,
-        Subsignal("r", Pins("B16")),
-        Subsignal("g", Pins("F17")),
-        Subsignal("b", Pins("M17")),
-        IOStandard("LVCMOS33")),
     # Serial
     ("serial", 0,
         Subsignal("tx", Pins("T17")),
