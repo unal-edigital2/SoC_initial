@@ -8,7 +8,7 @@
 #include <generated/csr.h>
 
 #include "delay.h"
-
+/*
 static char *readstr(void)
 {
 	char c[2];
@@ -98,7 +98,7 @@ static void display_test(void)
 static void led_test(void)
 {
 	unsigned int i;
-	printf("Test del los leds... se interrumpe con el botton 1\n");
+//	printf("Test del los leds... se interrumpe con el botton 1\n");
 	while(!(buttons_in_read()&1)) {
 
 	for(i=1; i<65536; i=i*2) {
@@ -205,7 +205,7 @@ static void console_service(void)
 		vga_test();
 	prompt();
 }
-
+*/
 int main(void)
 {
 	#ifdef CONFIG_CPU_HAS_INTERRUPT
@@ -215,11 +215,16 @@ int main(void)
 	uart_init();
 
 	puts("\nSoC - RiscV project UNAL 2022-2-- CPU testing software built "__DATE__" "__TIME__"\n");
-	help();
+/*	help();
 	prompt();
-
+*/
 	while(1) {
-		console_service();
+	//	console_service();
+		leds_out_write(7);
+		delay_ms(500);
+		leds_out_write(0);
+		delay_ms(500);
+		uart_write(48);	
 	}
 
 	return 0;

@@ -3,7 +3,7 @@ BUILD_DIR=../build/
 include $(BUILD_DIR)/software/include/generated/variables.mak
 include $(SOC_DIRECTORY)/software/common.mak
 
-OBJECTS=isr.o main.o delay.o
+OBJECTS= crt0.o main.o delay.o  isr.o
 
 all: firmware.bin
 	
@@ -21,6 +21,8 @@ firmware.elf: $(OBJECTS)
 		$(PACKAGES:%=-L$(BUILD_DIR)/software/%) \
 		$(LIBS:lib%=-l%)
 	chmod -x $@
+
+		
 
 main.o: main.c
 	$(compile)
