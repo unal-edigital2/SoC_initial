@@ -8,7 +8,7 @@
 #include <generated/csr.h>
 
 #include "delay.h"
-/*
+
 static char *readstr(void)
 {
 	char c[2];
@@ -90,7 +90,7 @@ static void display_test(void)
 	printf("display_test...\n");
 	for(i=0; i<6; i++) {
 		display_sel_write(i);
-		display_value_write(i);
+		display_value_write(7);
 		display_write_write(1);
 	}
 }
@@ -98,7 +98,7 @@ static void display_test(void)
 static void led_test(void)
 {
 	unsigned int i;
-//	printf("Test del los leds... se interrumpe con el botton 1\n");
+//./l		printf("Test del los leds... se interrumpe con el botton 1\n");
 	while(!(buttons_in_read()&1)) {
 
 	for(i=1; i<65536; i=i*2) {
@@ -161,7 +161,7 @@ static void rgbled_test(void)
 	
 }
 
-
+/*
 static void vga_test(void)
 {
 	int x,y;
@@ -180,7 +180,7 @@ static void vga_test(void)
 		}
 	}
 }
-
+*/
 static void console_service(void)
 {
 	char *str;
@@ -201,11 +201,12 @@ static void console_service(void)
 		display_test();
 	else if(strcmp(token, "rgbled") == 0)
 		rgbled_test();
-	else if(strcmp(token, "vga") == 0)
+/*	else if(strcmp(token, "vga") == 0)
 		vga_test();
+*/
 	prompt();
 }
-*/
+
 int main(void)
 {
 	#ifdef CONFIG_CPU_HAS_INTERRUPT
@@ -214,17 +215,17 @@ int main(void)
 	#endif
 	uart_init();
 
-	puts("\nSoC - RiscV project UNAL 2022-2-- CPU testing software built "__DATE__" "__TIME__"\n");
-/*	help();
+	puts("\nSoC - RiscV project UNAL 2022-2"__DATE__" "__TIME__"\n");
+	help();
 	prompt();
-*/
+
 	while(1) {
-	//	console_service();
-		leds_out_write(7);
-		delay_ms(500);
-		leds_out_write(0);
-		delay_ms(500);
-		uart_write(48);	
+		console_service();
+	/*	leds_out_write(15);
+		delay_ms(100);
+		leds_out_write(240);
+		delay_ms(100);
+		printf("El programa \n");*/
 	}
 
 	return 0;

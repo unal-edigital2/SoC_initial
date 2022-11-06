@@ -5,9 +5,9 @@ from migen.genlib.io import CRG
 from migen.genlib.cdc import MultiReg
 
 ## debe dejar solo una tarjeta
-import tarjetas.digilent_nexys4 as tarjeta # si usa tarjeta nexy 4 
+# import tarjetas.digilent_nexys4 as tarjeta # si usa tarjeta nexy 4 
 # import tarjetas.nexys4ddr as tarjeta # si usa tarjeta nexy 4 4DRR
-# import tarjetas.digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
+import tarjetas.digilent_zybo_z7 as tarjeta # si usa tarjeta zybo z7
 # import tarjetas.c4e6e10 as tarjeta
 
 from litex.soc.integration.soc_core import *
@@ -23,14 +23,13 @@ from module.display import SevenSegmentDisplay
 
 class BaseSoC(SoCCore):
 	def __init__(self):
-		sys_clk_freq = int(100e6)
 		platform = tarjeta.Platform()
+		sys_clk_freq = int(1e9/platform.default_clk_period)
 		# SoC with CPU
 		SoCCore.__init__(self, platform,
 # 			cpu_type="picorv32",
 			cpu_type="vexriscv",
-#		    cpu_type="naxriscv",
-			clk_freq=100e6,
+			clk_freq=1e9/platform.default_clk_period, 
 			integrated_rom_size=0x8000,
 			integrated_sram_size=0x1000,
 			integrated_main_ram_size=20*1024)
@@ -44,19 +43,20 @@ class BaseSoC(SoCCore):
 		self.submodules.leds = gpio.GPIOOut(user_leds)
 		
 		# Switchs
-#		SoCCore.add_csr(self,"switchs")
-#		user_switchs = Cat(*[platform.request("sw", i) for i in range(4)])
-#		self.submodules.switchs = gpio.GPIOIn(user_switchs)
+		SoCCore.add_csr(self,"switchs")
+		user_switchs = Cat(*[platform.request("sw", i) for i in range(4)])
+		self.submodules.switchs = gpio.GPIOIn(user_switchs)
 		
-		# Buttons
-#		SoCCore.add_csr(self,"buttons")
-#		user_buttons = Cat(*[platform.request("btn%c" %c) for c in ['c','d','u']])
-#		self.submodules.buttons = gpio.GPIOIn(user_buttons)
+		# Buttons  ("btnl", 0, Pins("P17"), IOStandard("LVCMOS33")),
+
+		SoCCore.add_csr(self,"buttons")
+		user_buttons = Cat(*[platform.request("btn%c" %c) for c in ['c','d','u' ]])
+		self.submodules.buttons = gpio.GPIOIn(user_buttons)
 		
 
 		# RGB leds
-#		SoCCore.add_csr(self,"ledRGB_1")
-#		self.submodules.ledRGB_1 = rgbled.RGBLed(platform.request("ledRGB",1))
+		SoCCore.add_csr(self,"ledRGB_1")
+		self.submodules.ledRGB_1 = rgbled.RGBLed(platform.request("ledRGB",1))
 		
 #		SoCCore.add_csr(self,"ledRGB_2")
 #		self.submodules.ledRGB_2 = rgbled.RGBLed(platform.request("ledRGB",2))
@@ -75,6 +75,8 @@ class BaseSoC(SoCCore):
 #		vga_green = Cat(*[platform.request("vga_green", i) for i in range(4)])
 #		vga_blue = Cat(*[platform.request("vga_blue", i) for i in range(4)])
 #		self.submodules.vga_cntrl = vgacontroller.VGAcontroller(platform.request("hsync"),platform.request("vsync"), vga_red, vga_green, vga_blue)
+
+
 
 # Build --------------------------------------------------------------------------------------------
 if __name__ == "__main__":
