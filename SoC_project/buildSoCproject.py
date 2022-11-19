@@ -35,7 +35,7 @@ class BaseSoC(SoCCore):
 			integrated_main_ram_size=20*1024)
 
 		# Clock Reset Generation
-		self.submodules.crg = CRG(platform.request("clk"), ~platform.request("cpu_reset"))
+		self.submodules.crg = CRG(platform.request("clk"), platform.request("cpu_reset"))
 
 		# Leds
 		SoCCore.add_csr(self,"leds")
@@ -75,7 +75,6 @@ class BaseSoC(SoCCore):
 #		vga_green = Cat(*[platform.request("vga_green", i) for i in range(4)])
 #		vga_blue = Cat(*[platform.request("vga_blue", i) for i in range(4)])
 #		self.submodules.vga_cntrl = vgacontroller.VGAcontroller(platform.request("hsync"),platform.request("vsync"), vga_red, vga_green, vga_blue)
-
 
 
 # Build --------------------------------------------------------------------------------------------

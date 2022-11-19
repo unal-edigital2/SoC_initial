@@ -47,6 +47,8 @@ _io = [
     ("serial", 0,
         Subsignal("tx", Pins("T17")),
         Subsignal("rx", Pins("Y17")),
+#        Subsignal("tx", Pins("B12")),
+#        Subsignal("rx", Pins("C12")),
         IOStandard("LVCMOS33")
     ),
 ]
@@ -108,7 +110,7 @@ class Platform(XilinxPlatform):
         XilinxPlatform.__init__(self, "xc7z010-clg400-1", _io,  _connectors, toolchain=toolchain)
         self.add_extension(_ps7_io)
         self.add_extension(_usb_uart_pmod_io)
-
+ 
     def create_programmer(self):
         return VivadoProgrammer()
 
